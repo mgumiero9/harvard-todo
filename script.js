@@ -8,6 +8,7 @@ const classNames = {
 const list = document.getElementById('todo-list')
 const itemCountSpan = document.getElementById('item-count')
 const uncheckedCountSpan = document.getElementById('unchecked-count')
+
 let cCounter = 0
 
 function verifyChecked(checkBox) {
@@ -25,7 +26,7 @@ function createListItem(todo) {
   let spanText = document.createElement('span')
   let itemButton = document.createElement('button')
 
-  checkbox.classList.add('todo-checkbox')
+  checkbox.classList.add(classNames.TODO_CHECKBOX)
   checkbox.setAttribute('type', 'checkbox')
   checkbox.setAttribute('onClick', 'verifyChecked(this)')
 
@@ -37,6 +38,7 @@ function createListItem(todo) {
   li.appendChild(spanText)
   li.appendChild(itemButton)
 
+  list.classList.add(classNames.TODO_ITEM)
   list.appendChild(li)
 }
 

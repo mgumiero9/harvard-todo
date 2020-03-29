@@ -3,6 +3,7 @@ const classNames = {
   TODO_CHECKBOX: 'todo-checkbox',
   TODO_TEXT: 'todo-text',
   TODO_DELETE: 'todo-delete',
+  TODO_BUTTON: 'button',
 }
 
 const list = document.getElementById('todo-list')
@@ -31,17 +32,19 @@ function createListItem(todo) {
   let itemButton = document.createElement('button')
 
   checkbox.classList.add(classNames.TODO_CHECKBOX)
+  itemButton.classList.add(classNames.TODO_BUTTON)
+  list.classList.add(classNames.TODO_ITEM)
+
   checkbox.setAttribute('type', 'checkbox')
   checkbox.setAttribute('onClick', 'verifyChecked(this)')
 
+  itemButton.innerHTML = 'Delete'
   spanText.innerText = todo;
 
   li.setAttribute('id', `element${list.childElementCount}`)
   li.appendChild(checkbox)
   li.appendChild(spanText)
   li.appendChild(itemButton)
-  list.classList.add(classNames.TODO_ITEM)
-
   list.appendChild(li)
 }
 

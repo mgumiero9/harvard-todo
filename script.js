@@ -36,7 +36,7 @@ function createListItem(todo) {
   list.classList.add(classNames.TODO_ITEM)
 
   checkbox.setAttribute('type', 'checkbox')
-  checkbox.setAttribute('onClick', 'verifyChecked(this)')
+  checkbox.onclick = function() {verifyChecked(this)}
 
   itemButton.innerHTML = 'Delete'
   spanText.innerText = todo;

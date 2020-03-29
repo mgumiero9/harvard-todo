@@ -16,11 +16,15 @@ function verifyChecked(checkBox) {
   uncheckedCountSpan.innerText = cCounter.toString()
 }
 
-function createListItem(todo) {
+function handleCounters() {
   itemCountSpan.innerText++
   cCounter = uncheckedCountSpan.innerText
   cCounter++
-  let children = list.children.length++
+  uncheckedCountSpan.innerText = cCounter.toString()
+}
+
+function createListItem(todo) {
+  handleCounters();
   let li = document.createElement('li')
   let checkbox = document.createElement('input')
   let spanText = document.createElement('span')
@@ -30,16 +34,15 @@ function createListItem(todo) {
   checkbox.setAttribute('type', 'checkbox')
   checkbox.setAttribute('onClick', 'verifyChecked(this)')
 
-  li.setAttribute('id', `element${children}`)
+  spanText.innerText = todo;
+
+  li.setAttribute('id', `element${list.childElementCount}`)
   li.appendChild(checkbox)
   li.appendChild(spanText)
   li.appendChild(itemButton)
   list.classList.add(classNames.TODO_ITEM)
 
   list.appendChild(li)
-
-  uncheckedCountSpan.innerText = cCounter.toString()
-  spanText.innerText = todo;
 }
 
 function newTodo() {

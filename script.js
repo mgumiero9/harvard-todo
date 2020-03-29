@@ -22,17 +22,19 @@ function createListItem(todo) {
   let children = list.children.length++
   let li = document.createElement('li')
   let checkbox = document.createElement('input')
-  let label = document.createElement('label')
+  let spanText = document.createElement('span')
   let itemButton = document.createElement('button')
+
+  checkbox.classList.add('todo-checkbox')
   checkbox.setAttribute('type', 'checkbox')
   checkbox.setAttribute('onClick', 'verifyChecked(this)')
 
   uncheckedCountSpan.innerText = cCounter.toString()
-  label.innerText = todo;
+  spanText.innerText = todo;
 
   li.setAttribute('id', `element${children}`)
   li.appendChild(checkbox)
-  li.appendChild(label)
+  li.appendChild(spanText)
   li.appendChild(itemButton)
 
   list.appendChild(li)

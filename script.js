@@ -9,6 +9,15 @@ const list = document.getElementById('todo-list')
 const itemCountSpan = document.getElementById('item-count')
 const uncheckedCountSpan = document.getElementById('unchecked-count')
 
+function createListItem(todo) {
+  let children = list.children.length++
+  let li = document.createElement('li')
+  li.setAttribute('id', `element${children}`)
+  li.appendChild(document.createTextNode(todo));
+  list.appendChild(li)
+}
+
 function newTodo() {
-  alert('New TODO button clicked!')
+  let todo = prompt('What do you want to do?')
+  createListItem(todo);
 }

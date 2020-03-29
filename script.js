@@ -10,6 +10,11 @@ const itemCountSpan = document.getElementById('item-count')
 const uncheckedCountSpan = document.getElementById('unchecked-count')
 let cCounter = 0
 
+function verifyChecked(checkBox) {
+  checkBox && checkBox.checked ? cCounter-- : cCounter++;
+  uncheckedCountSpan.innerText = cCounter.toString()
+}
+
 function createListItem(todo) {
   itemCountSpan.innerText++
   cCounter = uncheckedCountSpan.innerText
@@ -20,13 +25,8 @@ function createListItem(todo) {
   let label = document.createElement('label')
   let itemButton = document.createElement('button')
   checkbox.setAttribute('type', 'checkbox')
-  checkbox.setAttribute('onClick', 'if (this.checked) {' +
-          'cCounter--' +
-      '} else {' +
-          'cCounter++' +
-      '}; ' +
-      'uncheckedCountSpan.innerText = cCounter.toString()'
-  )
+  checkbox.setAttribute('onClick', 'verifyChecked(this)')
+
   uncheckedCountSpan.innerText = cCounter.toString()
   label.innerText = todo;
 

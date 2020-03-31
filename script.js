@@ -30,6 +30,25 @@ function deleteListItem(delBtn, list) {
   list.removeChild(liElement)
 }
 
+function setupElements(checkbox, itemButton, spanText, todo) {
+  checkbox.classList.add(classNames.TODO_CHECKBOX)
+  itemButton.classList.add(classNames.TODO_BUTTON)
+  list.classList.add(classNames.TODO_ITEM)
+
+  checkbox.setAttribute('type', 'checkbox')
+  checkbox.onclick = function () {
+    verifyChecked(this)
+  }
+
+  spanText.innerText = todo;
+
+  itemButton.innerHTML = 'Delete'
+  itemButton.setAttribute('id', `del-btn-${list.childElementCount}`)
+  itemButton.onclick = function () {
+    deleteListItem(this, list)
+  }
+}
+
 function createListItem(todo) {
   handleCounters();
   let li = document.createElement('li')
@@ -37,18 +56,7 @@ function createListItem(todo) {
   let spanText = document.createElement('span')
   let itemButton = document.createElement('button')
 
-  checkbox.classList.add(classNames.TODO_CHECKBOX)
-  itemButton.classList.add(classNames.TODO_BUTTON)
-  list.classList.add(classNames.TODO_ITEM)
-
-  checkbox.setAttribute('type', 'checkbox')
-  checkbox.onclick = function() {verifyChecked(this)}
-
-  spanText.innerText = todo;
-
-  itemButton.innerHTML = 'Delete'
-  itemButton.setAttribute('id', `del-btn-${list.childElementCount}`)
-  itemButton.onclick = function() {deleteListItem(this, list)}
+  setupElements(checkbox, itemButton, spanText, todo);
 
   li.setAttribute('id', `element${list.childElementCount}`)
   li.appendChild(checkbox)

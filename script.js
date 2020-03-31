@@ -9,13 +9,12 @@ const classNames = {
 const list = document.getElementById('todo-list')
 const itemCountSpan = document.getElementById('item-count')
 const uncheckedCountSpan = document.getElementById('unchecked-count')
-
-let cCounter = 0
 let iCounter = 0
+let cCounter = 0
 
 function verifyChecked(checkBox) {
   checkBox && checkBox.checked ? cCounter-- : cCounter++;
-  uncheckedCountSpan.innerText = cCounter.toString()
+  uncheckedCountSpan.innerText = cCounter
 }
 
 function handleCounters(mICounter, mCCounter) {
@@ -57,14 +56,12 @@ function setupElements(checkbox, itemButton, spanText, todo) {
 }
 
 function createListItem(todo) {
-  handleCounters(1, 1);
   let li = document.createElement('li')
   let checkbox = document.createElement('input')
   let spanText = document.createElement('span')
   let itemButton = document.createElement('button')
-
   setupElements(checkbox, itemButton, spanText, todo);
-
+  handleCounters(1, 1);
   li.setAttribute('id', `element${list.childElementCount}`)
   li.appendChild(checkbox)
   li.appendChild(spanText)

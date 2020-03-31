@@ -24,6 +24,12 @@ function handleCounters() {
   uncheckedCountSpan.innerText = cCounter.toString()
 }
 
+function deleteListItem(delBtn, list) {
+  let index = delBtn.getAttribute('id').match(/\d+/)[0]
+  let liElement = document.getElementById(`element${index}`);
+  list.removeChild(liElement)
+}
+
 function createListItem(todo) {
   handleCounters();
   let li = document.createElement('li')
@@ -38,8 +44,11 @@ function createListItem(todo) {
   checkbox.setAttribute('type', 'checkbox')
   checkbox.onclick = function() {verifyChecked(this)}
 
-  itemButton.innerHTML = 'Delete'
   spanText.innerText = todo;
+
+  itemButton.innerHTML = 'Delete'
+  itemButton.setAttribute('id', `del-btn-${list.childElementCount}`)
+  itemButton.onclick = function() {deleteListItem(this, list)}
 
   li.setAttribute('id', `element${list.childElementCount}`)
   li.appendChild(checkbox)

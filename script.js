@@ -11,23 +11,30 @@ const itemCountSpan = document.getElementById('item-count')
 const uncheckedCountSpan = document.getElementById('unchecked-count')
 
 let cCounter = 0
+let iCounter = 0
 
 function verifyChecked(checkBox) {
   checkBox && checkBox.checked ? cCounter-- : cCounter++;
   uncheckedCountSpan.innerText = cCounter.toString()
 }
 
-function handleCounters() {
-  itemCountSpan.innerText++
-  cCounter = uncheckedCountSpan.innerText
-  cCounter++
-  uncheckedCountSpan.innerText = cCounter.toString()
+function handleCounters(mICounter, mCCounter) {
+  iCounter = parseInt(itemCountSpan.innerText)
+  cCounter = parseInt(uncheckedCountSpan.innerText)
+  iCounter += mICounter
+  cCounter += mCCounter
+  itemCountSpan.innerText = iCounter
+  uncheckedCountSpan.innerText = cCounter
 }
 
 function deleteListItem(delBtn, list) {
   let index = delBtn.getAttribute('id').match(/\d+/)[0]
-  let liElement = document.getElementById(`element${index}`);
-  list.removeChild(liElement)
+  let li = document.getElementById(`element${index}`);
+  let checkbox = li.getElementsByTagName('input');
+  checkbox && checkbox[0] && checkbox[0].checked
+      ? handleCounters(-1, 0)
+      : handleCounters(-1, -1);
+  list.removeChild(li)
 }
 
 function setupElements(checkbox, itemButton, spanText, todo) {
@@ -50,7 +57,7 @@ function setupElements(checkbox, itemButton, spanText, todo) {
 }
 
 function createListItem(todo) {
-  handleCounters();
+  handleCounters(1, 1);
   let li = document.createElement('li')
   let checkbox = document.createElement('input')
   let spanText = document.createElement('span')
